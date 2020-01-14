@@ -1,5 +1,10 @@
 <template>
-  <h1>Contacts</h1>
+  <div class="contacts">
+    <h1 class="body-1 grey--text">Contacts</h1>
+    <v-container class="my-5">
+      <p>Content</p>
+    </v-container>
+  </div>
 </template>
 
 <script>

@@ -1,34 +1,21 @@
 <template>
   <nav>
-    <v-navigation-drawer
-      class="primary"
-      color="indigo"
-      v-model="drawer"
-      width="220"
-      floating
-      app
-    >
+    <v-navigation-drawer class="primary" color="indigo" v-model="drawer" width="220" floating app>
       <div class="d-flex flex-column align-center mt-10">
         <v-avatar size="100" class="align-center">
-          <img src="@/assets/ava.jpg" />
+          <img src="/ava.jpg" alt="avatar" />
         </v-avatar>
         <p class="mt-1 white--text">Nazar Khaylo</p>
         <Portfolio />
       </div>
 
       <v-list nav>
-        <v-list-item
-          v-for="(link, index) of links"
-          :key="index"
-          :to="link.roure"
-        >
+        <v-list-item v-for="(link, index) of links" :key="index" :to="link.roure">
           <v-list-item-action>
             <v-icon class="white--text">{{ link.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{
-              link.text
-            }}</v-list-item-title>
+            <v-list-item-title class="white--text">{{ link.text }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
