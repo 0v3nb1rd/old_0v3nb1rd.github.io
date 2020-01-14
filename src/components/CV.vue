@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="success">Pdf</v-btn>
+  <v-btn class="success">CV</v-btn>
 </template>
 
 <script>

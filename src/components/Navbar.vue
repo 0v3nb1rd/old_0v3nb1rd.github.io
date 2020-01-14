@@ -6,7 +6,7 @@
           <img src="/ava.jpg" alt="avatar" />
         </v-avatar>
         <p class="mt-1 white--text">Nazar Khaylo</p>
-        <Portfolio />
+        <CV />
       </div>
 
       <v-list nav>
@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import Portfolio from "./Portfolio";
+import CV from "./CV";
 export default {
   components: {
-    Portfolio
+    CV
   },
   props: {
     source: String
