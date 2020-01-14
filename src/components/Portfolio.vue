@@ -1,9 +1,7 @@
 <template>
-  <h1>Skills</h1>
+  <v-btn class="success">Pdf</v-btn>
 </template>
 
 <script>
 export default {};
 </script>
-
-<style></style>
