@@ -4,7 +4,7 @@
     <v-container class="cont">
       <v-card shaped raised>
         <v-card-title>
-          <span class=" headline">Send a message</span>
+          <span class="headline">Send a message</span>
         </v-card-title>
         <v-card-text>
           <v-form ref="form" v-model="valid" :lazy-validation="lazy">
