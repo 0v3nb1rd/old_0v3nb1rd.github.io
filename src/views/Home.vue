@@ -11,11 +11,11 @@
     <div class="shape"></div>
     <div class="shape"></div>
     <div class="wrapper">
-      <h1>
-        <span>Hello, I'm Nazar</span>
-        <span class="typed-text"></span>
-        <span class="cursor">&nbsp;</span>
-      </h1>
+      <h1>Hello, I'm Nazar</h1>
+      <p>
+        <span class="typed-text"> {{ typeValue }} </span>
+        <span class="cursor" :class="{ typing: typeStatus }">&nbsp; </span>
+      </p>
     </div>
   </div>
 </template>
@@ -25,38 +25,97 @@ export default {
   name: "home",
   components: {},
   data: () => ({
-    txt: "",
-    words: ["Software Engineer", "Front End Developer"]
-  })
+    typeValue: "",
+    typeStatus: false,
+    typeWords: [
+      "<Software Engineer/>",
+      "<Front End Developer/>",
+      "<HTML Coder/>"
+    ],
+    typingSpeed: 200,
+    erasingSpeed: 100,
+    newTextDelay: 2000,
+    typeWordsIndex: 0,
+    charIndex: 0
+  }),
+  methods: {
+    typeText() {
+      if (this.charIndex < this.typeWords[this.typeWordsIndex].length) {
+        if (!this.typeStatus) {
+          this.typeStatus = true;
+        }
+        this.typeValue += this.typeWords[this.typeWordsIndex].charAt(
+          this.charIndex
+        );
+        this.charIndex += 1;
+        setTimeout(this.typeText, this.typingSpeed);
+      } else {
+        this.typeStatus = false;
+        setTimeout(this.eraseText, this.newTextDelay);
+      }
+    },
+    eraseText() {
+      if (this.charIndex > 0) {
+        if (!this.typeStatus) this.typeStatus = true;
+
+        this.typeValue = this.typeWords[this.typeWordsIndex].substring(
+          0,
+          this.charIndex - 1
+        );
+        this.charIndex -= 1;
+        setTimeout(this.eraseText, this.erasingSpeed);
+      } else {
+        this.typeStatus = false;
+        this.typeWordsIndex += 1;
+        if (this.typeWordsIndex >= this.typeWords.length)
+          this.typeWordsIndex = 0;
+        setTimeout(this.typeText, this.typingSpeed + 1000);
+      }
+    }
+  },
+  created() {
+    setTimeout(this.typeText, this.newTextDelay + 200);
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
   position: absolute;
-  // display: flex;
-  // width: 100%;
-  // height: 100vh;
-  justify-content: center;
-  align-items: center;
   top: 50%;
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
+  color: #303a52;
+  font-family: "Raleway", sans-serif;
+
   h1 {
+    font-weight: 700;
     font-size: 4rem;
-    font-weight: normal;
-    span.typed-text {
-      color: #d2b94b;
-    }
-    span.cursor {
-      display: inline-block;
-      margin-left: 3px;
-      width: 4px;
-      height: 4rem;
-      background-color: #000;
-      // animation: cursorBlink ease 1s infinite;
-    }
+    letter-spacing: 0.1rem;
+  }
+  p {
+    color: #303a52;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.1rem;
+
+    font-size: 2.5rem;
+  }
+  span.typed-text {
+    color: #1e1e1e;
+  }
+  span.cursor {
+    display: inline-block;
+    width: 4px;
+    height: 2.5rem;
+    margin-left: -7px;
+    margin-bottom: -6px;
+    background-color: #000;
+    animation: cursorBlink 1s infinite;
+  }
+  span.cursor.typing {
+    animation: none;
   }
 }
 
@@ -89,7 +148,6 @@ export default {
     left: 20%;
     background-image: url("/bg_img/0.png");
     animation-duration: 7s;
-    // animation-delay: 1s;
   }
   &:nth-child(3) {
     width: 35px;
@@ -97,7 +155,6 @@ export default {
     left: 30%;
     background-image: url("/bg_img/X.png");
     animation-duration: 9s;
-    // animation-delay: 2s;
   }
   &:nth-child(4) {
     width: 15px;
@@ -105,7 +162,6 @@ export default {
     left: 40%;
     background-image: url("/bg_img/S.png");
     animation-duration: 6s;
-    // animation-delay: 0s;
   }
   &:nth-child(5) {
     width: 30px;
@@ -113,7 +169,6 @@ export default {
     left: 50%;
     background-image: url("/bg_img/A.png");
     animation-duration: 10s;
-    // animation-delay: 1s;
   }
   &:nth-child(6) {
     width: 20px;
@@ -121,7 +176,6 @@ export default {
     left: 60%;
     background-image: url("/bg_img/0.png");
     animation-duration: 7s;
-    // animation-delay: 3s;
   }
   &:nth-child(7) {
     width: 10px;
@@ -129,7 +183,6 @@ export default {
     left: 70%;
     background-image: url("/bg_img/X.png");
     animation-duration: 9s;
-    // animation-delay: 2s;
   }
   &:nth-child(8) {
     width: 25px;
@@ -137,7 +190,6 @@ export default {
     left: 80%;
     background-image: url("/bg_img/S.png");
     animation-duration: 6s;
-    // animation-delay: 1s;
   }
   &:nth-child(9) {
     width: 15px;
@@ -145,7 +197,6 @@ export default {
     left: 90%;
     background-image: url("/bg_img/A.png");
     animation-duration: 10s;
-    // animation-delay: 0s;
   }
   &:nth-child(10) {
     width: 30px;
@@ -158,12 +209,14 @@ export default {
 
 //-->> Start Animations -->>//
 @keyframes cursorBlink {
-  0%,
-  100% {
-    opacity: 0;
+  49% {
+    background-color: #000;
   }
   50% {
-    opacity: 1;
+    background-color: transparent;
+  }
+  99% {
+    background-color: transparent;
   }
 }
 
