@@ -8,7 +8,7 @@
       floating
       app
     >
-      <div class="d-flex flex-column align-center mt-10">
+      <div class="d-flex flex-column align-center my-10">
         <v-avatar size="100" class="align-center">
           <img src="/ava.jpg" alt="avatar" />
         </v-avatar>

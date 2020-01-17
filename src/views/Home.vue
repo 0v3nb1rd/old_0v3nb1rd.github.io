@@ -74,6 +74,7 @@ export default {
     }
   },
   created() {
+    this.$emit("HomePage");
     setTimeout(this.typeText, this.newTextDelay + 200);
   }
 };
