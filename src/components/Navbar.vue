@@ -1,6 +1,13 @@
 <template>
   <nav>
-    <v-navigation-drawer class="primary" color="indigo" v-model="drawer" width="220" floating app>
+    <v-navigation-drawer
+      class="primary"
+      color="indigo"
+      v-model="drawer"
+      width="220"
+      floating
+      app
+    >
       <div class="d-flex flex-column align-center mt-10">
         <v-avatar size="100" class="align-center">
           <img src="/ava.jpg" alt="avatar" />
@@ -10,18 +17,24 @@
       </div>
 
       <v-list nav>
-        <v-list-item v-for="(link, index) of links" :key="index" :to="link.roure">
+        <v-list-item
+          v-for="(link, index) of links"
+          :key="index"
+          :to="link.roure"
+        >
           <v-list-item-action>
             <v-icon class="white--text">{{ link.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{ link.text }}</v-list-item-title>
+            <v-list-item-title class="white--text">{{
+              link.text
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app flat>
+    <v-app-bar app flat class="transparent">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer></v-spacer>
 

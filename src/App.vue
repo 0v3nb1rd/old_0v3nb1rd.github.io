@@ -15,7 +15,11 @@ export default {
     Navbar
   },
   data: () => ({
-    //
+    pad: false,
+    isActive: true,
+    error: null
   })
 };
 </script>
+
+<style scoped></style>
