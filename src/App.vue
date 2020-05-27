@@ -2,7 +2,9 @@
   <v-app>
     <Navbar />
     <v-content class="mx-4 mb-4">
-      <router-view></router-view>
+      <transition name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </v-content>
   </v-app>
 </template>
@@ -12,14 +14,23 @@ import Navbar from "./components/Navbar";
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
   },
   data: () => ({
     pad: false,
     isActive: true,
-    error: null
-  })
+    error: null,
+  }),
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateX(2em);
+}
+</style>

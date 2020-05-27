@@ -30,13 +30,13 @@ export default {
     typeWords: [
       "<Software Engineer/>",
       "<Front End Developer/>",
-      "<HTML Coder/>"
+      "<HTML Coder/>",
     ],
-    typingSpeed: 200,
-    erasingSpeed: 100,
-    newTextDelay: 2000,
+    typingSpeed: 100,
+    erasingSpeed: 25,
+    newTextDelay: 1700,
     typeWordsIndex: 0,
-    charIndex: 0
+    charIndex: 0,
   }),
   methods: {
     typeText() {
@@ -71,12 +71,12 @@ export default {
           this.typeWordsIndex = 0;
         setTimeout(this.typeText, this.typingSpeed + 1000);
       }
-    }
+    },
   },
   created() {
     this.$emit("HomePage");
     setTimeout(this.typeText, this.newTextDelay + 200);
-  }
+  },
 };
 </script>
 
